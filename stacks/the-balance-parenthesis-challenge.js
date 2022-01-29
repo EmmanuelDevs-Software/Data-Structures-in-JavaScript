@@ -11,7 +11,10 @@ function isBalanced(str){
     // if the letter is an opening paren push it on the stack
     if(letter === '('){
       stack.push(letter)
-    }else if(letter  === ')'){
+    }else if(stack.length  === 0){
+        return false // the closing paren had no matching opening paren
+    }
+    else if(letter  === ')'){
         // if the letter is a closing paren make sure it has a matching opening paren
       if(peek(stack) === '('){
         stack.pop()
