@@ -32,6 +32,11 @@ class LinkedList {
         this.root = node
         this.size++
     }
+      //O(1)
+      //addAtIndex must visit every node to get to the end of the list
+    append(Data){
+      this.addAtIndex(this.size - 1, index)
+    }
 
     // returns the size of the list
     //O(n) linear time
@@ -103,6 +108,25 @@ class LinkedList {
         }
         current.next = current.next.next
     }
+
+    //O(1)
+    //must visist every node to the proper index
+    addAtIndex(index, value){
+      if(index === 0){
+        this.prepend(value)
+      }else{
+        let current  = this.root;
+        let  i = 0;
+        while(current !== null  && i < index - 1){
+          i++
+          current = current.next
+        }
+        let node = new ListNode(value)
+        node.next = current.next
+        current.next = node
+      }
+    this.size++
+    }
 }
 
 let list = new LinkedList()
@@ -131,4 +155,12 @@ l2.removeAtIndex(0)
 console.log(l2.toStringList());
 console.log("remove last")
 l2.removeAtIndex(l2.lengthOfTheList() - 1)
+console.log(l2.toStringList());
+
+console.log("adding ant indexes");
+l2.addAtIndex(0, -100)
+l2.addAtIndex(1, 50)
+l2.addAtIndex(2, 120)
+l2.addAtIndex(5, 44)
+l2.addAtIndex(l2.size - 1, 9999)
 console.log(l2.toStringList());
